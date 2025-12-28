@@ -28,6 +28,12 @@
       "css": ["youtube.css"],
       "js": ["youtube.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.x.com/*", "*://x.com/*", "*://*.twitter.com/*", "*://twitter.com/*"],
+      "css": ["x.css"],
+      "js": ["x.js"],
+      "run_at": "document_start"
     }
   ]
 }
