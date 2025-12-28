@@ -1,0 +1,38 @@
+/* Instagram Content Blocker - Block feed, allow search/explore/profiles */
+/* Note: Most blocking is handled by instagram.js for URL-based logic */
+
+/* Keep the navigation header always visible */
+nav[role="navigation"],
+header {
+  visibility: visible !important;
+}
+
+/* Always show search-related elements */
+div[data-testid="search-results"],
+div[role="dialog"][aria-label*="Search"],
+nav div[role="search"],
+input[aria-label*="Search"],
+input[placeholder*="Search"],
+div[role="listbox"],
+div[role="dialog"]:has(input[aria-label*="Search"]) {
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Hide reels navigation link */
+a[href="/reels/"],
+a[href^="/reels"] {
+  display: none !important;
+}
+
+/* Hide direct messages link */
+a[href="/direct/inbox/"],
+a[href^="/direct"] {
+  display: none !important;
+}
+
+/* Hide stories on home page */
+div[aria-label*="Stories"],
+canvas[aria-label*="Stories"] {
+  display: none !important;
+}

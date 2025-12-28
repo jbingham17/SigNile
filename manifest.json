@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Site Content Blocker",
+  "version": "1.0",
+  "description": "Blocks distracting content on social media sites while keeping essential features",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "css": ["instagram.css"],
+      "js": ["instagram.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
