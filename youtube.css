@@ -1,0 +1,188 @@
+/* YouTube Content Blocker Styles */
+/* Hides recommendations, autoplay suggestions, and end-of-video suggestions */
+
+/* ===== RIGHT SIDEBAR RECOMMENDATIONS ===== */
+/* The entire secondary column with "Up next" videos */
+#secondary,
+#related,
+ytd-watch-next-secondary-results-renderer,
+#items.ytd-watch-next-secondary-results-renderer {
+  display: none !important;
+}
+
+/* Compact sidebar when viewing comments */
+ytd-compact-video-renderer,
+ytd-compact-radio-renderer,
+ytd-compact-playlist-renderer {
+  display: none !important;
+}
+
+/* ===== END SCREEN SUGGESTIONS ===== */
+/* Video end screen overlay with clickable video suggestions */
+.ytp-endscreen-content,
+.ytp-ce-element,
+.ytp-ce-covering-overlay,
+.ytp-ce-element-shadow,
+.ytp-ce-covering-image,
+.ytp-ce-expanding-image,
+.ytp-ce-video,
+.ytp-ce-playlist,
+.ytp-ce-channel,
+.ytp-endscreen-previous,
+.ytp-endscreen-next,
+.html5-endscreen {
+  display: none !important;
+}
+
+/* End screen container */
+.ytp-show-tiles .ytp-endscreen-content {
+  display: none !important;
+}
+
+/* ===== AUTOPLAY ===== */
+/* Autoplay toggle in the player */
+.ytp-autonav-toggle-button-container,
+.ytp-autonav-toggle-button,
+#autoplay,
+paper-toggle-button#toggle,
+ytd-compact-autoplay-renderer,
+.ytp-autonav-endscreen-upnext-container {
+  display: none !important;
+}
+
+/* Autoplay end screen (the countdown overlay) */
+.ytp-autonav-endscreen,
+.ytp-autonav-endscreen-countdown-overlay,
+.ytp-autonav-endscreen-upnext,
+.ytp-autonav-endscreen-upnext-thumbnail,
+.ytp-upnext,
+.ytp-upnext-autoplay-icon {
+  display: none !important;
+}
+
+/* ===== SUGGESTED VIDEOS OVERLAY ===== */
+/* Suggestions that appear when pausing */
+.ytp-pause-overlay-container,
+.ytp-pause-overlay,
+.ytp-scroll-min .ytp-pause-overlay {
+  display: none !important;
+}
+
+/* ===== EXPAND VIDEO PLAYER WIDTH ===== */
+/* Since we're hiding the sidebar, make the video player use more space */
+#primary.ytd-watch-flexy {
+  max-width: 100% !important;
+}
+
+ytd-watch-flexy[flexy][flexy_]:not([theater]):not([fullscreen]) #player-theater-container.ytd-watch-flexy {
+  max-width: 100% !important;
+}
+
+/* Center the video player content */
+ytd-watch-flexy:not([theater]):not([fullscreen]) #columns.ytd-watch-flexy {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+
+/* ===== CHIPS/FILTER BAR ===== */
+/* The horizontal scrolling category chips (All, Music, Gaming, etc.) */
+ytd-feed-filter-chip-bar-renderer,
+#chip-bar,
+#chips-wrapper,
+yt-chip-cloud-renderer,
+iron-selector#chips {
+  display: none !important;
+}
+
+/* ===== SEARCH BAR ===== */
+/* Remove the search bar from the header */
+#search-form,
+#search,
+#search-input,
+ytd-searchbox,
+#center,
+#container.ytd-searchbox,
+#search-container,
+.ytd-searchbox,
+#voice-search-button,
+#search-icon-legacy {
+  display: none !important;
+}
+
+/* ===== LEFT SIDEBAR ===== */
+/* Subscriptions and navigation sidebar */
+#guide,
+#guide-content,
+ytd-guide-renderer,
+ytd-mini-guide-renderer,
+#guide-button,
+tp-yt-app-drawer,
+app-drawer#guide,
+#appbar-guide-menu {
+  display: none !important;
+}
+
+/* Remove the mini guide (collapsed sidebar icons) */
+ytd-mini-guide-entry-renderer {
+  display: none !important;
+}
+
+/* Shift main content to fill the space left by sidebar */
+ytd-app[guide-persistent-and-visible] #content.ytd-app {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+ytd-app:not([guide-persistent-and-visible]) #content.ytd-app {
+  margin-left: 0 !important;
+}
+
+/* ===== HOMEPAGE FEED ===== */
+/* Remove all homepage video recommendations */
+ytd-browse[page-subtype="home"] #contents.ytd-rich-grid-renderer,
+ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+ytd-browse[page-subtype="home"] ytd-rich-item-renderer,
+ytd-browse[page-subtype="home"] ytd-rich-section-renderer,
+ytd-browse[page-subtype="home"] #primary,
+ytd-two-column-browse-results-renderer[page-subtype="home"] {
+  display: none !important;
+}
+
+/* Homepage masthead/hero content */
+ytd-browse[page-subtype="home"] #masthead-ad,
+ytd-browse[page-subtype="home"] .ytd-rich-grid-renderer,
+#home-page-skeleton {
+  display: none !important;
+}
+
+/* Show a clean message instead of homepage */
+ytd-browse[page-subtype="home"]::before {
+  content: "YouTube distractions hidden. Navigate directly to a video URL.";
+  display: block;
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 18px;
+  color: #606060;
+}
+
+/* ===== INFO CARDS ===== */
+/* Cards that pop up during video */
+.ytp-ce-element.ytp-ce-channel,
+.ytp-ce-element.ytp-ce-video,
+.iv-card,
+.iv-card-content {
+  display: none !important;
+}
+
+/* ===== SHORTS SHELF ===== */
+/* Shorts section on homepage and search results */
+ytd-reel-shelf-renderer,
+ytd-rich-shelf-renderer[is-shorts],
+[is-shorts] {
+  display: none !important;
+}
+
+/* Shorts in sidebar/related */
+ytd-reel-item-renderer {
+  display: none !important;
+}
