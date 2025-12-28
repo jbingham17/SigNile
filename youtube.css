@@ -73,7 +73,6 @@ ytd-compact-playlist-renderer {
 
 /* Hide the entire endscreen layer */
 .ytp-player-content.ytp-endscreen-paginate,
-.ytp-player-content:has(.ytp-endscreen-content),
 .ytp-endscreen-previous,
 .ytp-endscreen-next,
 .html5-endscreen.ytp-player-content {

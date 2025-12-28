@@ -56,11 +56,9 @@
       });
     });
 
-    // Also hide any element with endscreen-related attributes
-    document.querySelectorAll('[class*="endscreen"], [class*="videowall"], [class*="suggestion"]').forEach(el => {
-      if (el.closest('.ytp-player-content') || el.closest('.html5-video-player')) {
-        el.style.setProperty('display', 'none', 'important');
-      }
+    // Also hide any element with endscreen-related attributes (but not within the main video container)
+    document.querySelectorAll('.ytp-endscreen-content, .ytp-videowall-still, .ytp-suggestion-set').forEach(el => {
+      el.style.setProperty('display', 'none', 'important');
     });
   }
 
