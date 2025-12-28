@@ -16,6 +16,12 @@
       "css": ["reddit.css"],
       "js": ["reddit.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.linkedin.com/*"],
+      "css": ["linkedin.css"],
+      "js": ["linkedin.js"],
+      "run_at": "document_start"
     }
   ]
 }
