@@ -1,0 +1,66 @@
+/* Reddit Content Blocker - Block homepage and non-whitelisted subreddits */
+/* Note: Most blocking is handled by reddit.js for URL-based logic */
+
+/* Hide left sidebar completely */
+#left-sidebar,
+#left-sidebar-container,
+nav[aria-label="Primary"],
+[data-testid="left-sidebar"],
+.left-sidebar,
+left-sidebar-container,
+reddit-sidebar-nav,
+#SHORTCUT_FOCUSABLE_DIV > div > div:first-child:has(nav),
+aside#left-sidebar {
+  display: none !important;
+}
+
+/* Hide communities/subscriptions drawer */
+[aria-label="Communities"],
+[aria-label="Your Communities"],
+[aria-label="Subscriptions"],
+[data-testid="community-list"] {
+  display: none !important;
+}
+
+/* Hide suggested communities everywhere */
+[aria-label*="Suggested Communities"],
+[aria-label*="Recommended Communities"],
+[data-testid="recommended-communities"] {
+  display: none !important;
+}
+
+/* Hide trending searches */
+[data-testid="trending-searches"],
+[aria-label*="Trending"] {
+  display: none !important;
+}
+
+/* Hide popular posts widget */
+[data-testid="popular-communities-widget"],
+[aria-label*="Popular Communities"] {
+  display: none !important;
+}
+
+/* Hide home feed link styling (still accessible but less prominent) */
+a[href="/"][aria-label="Home"],
+a[data-testid="home-link"] {
+  opacity: 0.3 !important;
+}
+
+/* Hide r/popular and r/all links */
+a[href="/r/popular"],
+a[href="/r/all"],
+a[href="/r/popular/"],
+a[href="/r/all/"] {
+  display: none !important;
+}
+
+/* Hide "Create Post" prompts outside allowed subreddits */
+/* This will be managed by JS based on URL */
+
+/* Hide advertisement/promoted content */
+[data-testid="ad-slot"],
+shreddit-ad-post,
+[data-promoted="true"] {
+  display: none !important;
+}

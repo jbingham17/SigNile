@@ -10,6 +10,12 @@
       "css": ["instagram.css"],
       "js": ["instagram.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.reddit.com/*", "*://reddit.com/*"],
+      "css": ["reddit.css"],
+      "js": ["reddit.js"],
+      "run_at": "document_start"
     }
   ]
 }
