@@ -31,6 +31,12 @@ a[href^="/direct"] {
   display: none !important;
 }
 
+/* Hide explore navigation link */
+a[href="/explore/"],
+a[href^="/explore"] {
+  display: none !important;
+}
+
 /* Hide stories on home page - aggressive selectors to prevent flash */
 div[aria-label*="Stories"],
 canvas[aria-label*="Stories"],

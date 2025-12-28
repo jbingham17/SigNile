@@ -92,10 +92,10 @@
     'aside',
     // Reels nav link
     '[href*="/reels/"]',
+    // Explore nav link
+    '[href*="/explore/"]',
     // Notification content
     '[aria-label="Notifications"] > div > div:not(:first-child)',
-    // Suggested for you link
-    'a[href="/explore/people/"]',
   ];
 
   // Get direct text content (not from children)
@@ -166,15 +166,15 @@
     '[role="listbox"]',
   ];
 
-  // Check if current page is allowed (profile, explore, or post view)
+  // Check if current page is allowed (profile or post view)
   function isAllowedPage() {
     const path = window.location.pathname;
 
     // Block these paths
-    const blockedPaths = ['/reels', '/direct', '/stories'];
+    const blockedPaths = ['/reels', '/direct', '/stories', '/explore'];
 
     // Allow these paths explicitly
-    const allowedPaths = ['/explore', '/p/'];
+    const allowedPaths = ['/p/'];
 
     // Home feed is blocked
     if (path === '/' || path === '') return false;
