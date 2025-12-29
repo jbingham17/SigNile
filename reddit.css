@@ -64,3 +64,21 @@ shreddit-ad-post,
 [data-promoted="true"] {
   display: none !important;
 }
+
+/* Hide right sidebar completely */
+#right-sidebar-container,
+[data-testid="right-sidebar"],
+aside[aria-label="Right sidebar"],
+pdp-right-rail,
+right-sidebar,
+shreddit-right-rail,
+.right-sidebar,
+#SHORTCUT_FOCUSABLE_DIV > div > div:last-child:has(aside),
+main + aside,
+[id*="right-sidebar"],
+div[style*="flex-direction: row"] > aside:last-child,
+reddit-pdp-right-rail,
+pdp-right-rail,
+shreddit-pdp-right-rail {
+  display: none !important;
+}
