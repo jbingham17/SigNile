@@ -14,15 +14,29 @@ header[role="banner"],
 main[role="main"] {
   margin: 0 auto !important;
   max-width: 600px !important;
+  width: 100% !important;
 }
 
 [data-testid="primaryColumn"] {
   margin: 0 auto !important;
+  max-width: 600px !important;
 }
 
 /* Remove any left padding/positioning from the main container */
 body > div > div {
   justify-content: center !important;
+}
+
+/* Force the main layout container to center content */
+body > div#react-root > div > div {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Remove left margin that accounts for hidden sidebar */
+main[role="main"] > div {
+  width: 100% !important;
+  max-width: 600px !important;
 }
 
 /* ===== RIGHT SIDEBAR ===== */
