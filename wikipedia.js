@@ -4,6 +4,27 @@
 (function() {
   'use strict';
 
+  // Check if current page is a disambiguation page
+  function isDisambiguationPage() {
+    // Check URL for disambiguation suffix
+    if (window.location.pathname.includes('_(disambiguation)')) {
+      return true;
+    }
+    // Check for disambiguation box/template
+    if (document.querySelector('.dmbox, .disambiguation, #disambigbox, .dmbox-disambig')) {
+      return true;
+    }
+    // Check for disambiguation category
+    if (document.querySelector('#catlinks a[href*="Category:Disambiguation_pages"]')) {
+      return true;
+    }
+    // Check for the "disambig" class on body (some skins use this)
+    if (document.body && document.body.classList.contains('disambig')) {
+      return true;
+    }
+    return false;
+  }
+
   // Selectors for links we want to disable (article content links)
   const articleLinkSelectors = [
     // Main article content links
@@ -94,6 +115,9 @@
 
   // Remove article links completely from DOM
   function removeArticleLinks() {
+    // Don't remove links on disambiguation pages
+    if (isDisambiguationPage()) return;
+
     // Find all links in article content
     document.querySelectorAll('a[href^="/wiki/"]').forEach(link => {
       // Skip if already processed
