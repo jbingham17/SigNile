@@ -59,6 +59,9 @@
     }
   }
 
+  // Track if we've done initial hide
+  let initialHideDone = false;
+
   // Initial run
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', hideElements);
@@ -66,8 +69,18 @@
     hideElements();
   }
 
-  // Watch for dynamic content
+  // Watch for dynamic content - React apps need immediate response on first render
   const observer = new MutationObserver((mutations) => {
+    // Run immediately on first significant mutation (React hydration)
+    if (!initialHideDone) {
+      const hasSignificantContent = document.querySelector('[class*="ListFrontPage"], [class*="Article"], main, article');
+      if (hasSignificantContent) {
+        initialHideDone = true;
+        hideElements();
+      }
+    }
+
+    // Debounce subsequent runs
     if (observer.timeout) clearTimeout(observer.timeout);
     observer.timeout = setTimeout(hideElements, 100);
   });
@@ -79,6 +92,12 @@
         childList: true,
         subtree: true
       });
+      // Run hideElements aggressively during initial load
+      hideElements();
+      setTimeout(hideElements, 50);
+      setTimeout(hideElements, 150);
+      setTimeout(hideElements, 300);
+      setTimeout(hideElements, 500);
     } else {
       setTimeout(startObserver, 10);
     }
