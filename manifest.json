@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Site Content Blocker",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "Blocks distracting content on social media sites while keeping essential features",
   "icons": {
     "16": "icons/icon16.png",
@@ -44,6 +44,12 @@
       "matches": ["*://*.x.com/*", "*://x.com/*", "*://*.twitter.com/*", "*://twitter.com/*"],
       "css": ["x.css"],
       "js": ["x.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.linkedin.com/*", "*://linkedin.com/*"],
+      "css": ["linkedin.css"],
+      "js": ["linkedin.js"],
       "run_at": "document_start"
     }
   ]
