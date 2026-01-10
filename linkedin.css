@@ -1,44 +1,5 @@
-/* LinkedIn Content Blocker - Block main feed */
+/* LinkedIn Content Blocker - Block main feed only */
+/* CSS is minimal here - JS handles the blocking logic based on URL */
 
-/* Hide the entire main content area on feed page */
-main.scaffold-layout__main,
-main[class*="scaffold-layout__main"],
-.scaffold-layout__main,
-.scaffold-layout__content,
-.scaffold-layout__row {
-  display: none !important;
-}
-
-/* Hide the main feed content */
-.scaffold-finite-scroll,
-.feed-shared-update-v2,
-.occludable-update,
-[data-id^="urn:li:activity"],
-.feed-sort-dropdown {
-  display: none !important;
-}
-
-/* Hide all feed posts */
-[heading="Feed post"],
-li:has([heading="Feed post"]) {
-  display: none !important;
-}
-
-/* Hide news and sidebar modules on feed */
-.news-module,
-.feed-follows-module,
-.ad-banner-container {
-  display: none !important;
-}
-
-/* Hide "Start a post" box on feed */
-.share-box-feed-entry__trigger,
-.share-box-feed-entry__closed-share-box {
-  display: none !important;
-}
-
-/* Hide feed sorting options */
-.feed-sort-dropdown,
-.feed-shared-actor__sub-description {
-  display: none !important;
-}
+/* These selectors only affect feed-specific elements that won't appear on profiles */
+/* The JS file handles hiding the main content area only on /feed pages */

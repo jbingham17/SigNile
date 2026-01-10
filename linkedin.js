@@ -1,19 +1,20 @@
 // LinkedIn Content Blocker
-// Blocks the main homefeed while allowing other LinkedIn pages
+// Blocks only the home feed while allowing profiles, posts, and other pages
 
 (function() {
   'use strict';
 
-  // Check if on a blocked page (the main feed)
+  // Check if on the home feed page (not profiles or posts)
   function isBlockedPage() {
     const path = window.location.pathname.toLowerCase();
 
-    // Block the main feed
+    // Only block the main home feed
     if (path === '/feed' || path === '/feed/' || path.startsWith('/feed?')) return true;
 
     // Block homepage that redirects to feed
     if (path === '/' || path === '') return true;
 
+    // Allow everything else: profiles (/in/), posts (/posts/), jobs, messages, etc.
     return false;
   }
 
@@ -87,10 +88,10 @@
 
     message.innerHTML = `
       <div style="font-size: 24px; margin-bottom: 16px; color: #0a66c2;">LinkedIn Feed Blocked</div>
-      <div style="margin-bottom: 20px;">The main feed is blocked to help you stay focused.</div>
+      <div style="margin-bottom: 20px;">The home feed is blocked to help you stay focused.</div>
       <div style="font-size: 14px; color: #666;">
         You can still access:<br>
-        <span style="color: #0a66c2;">Jobs, Messages, Notifications, Profiles, and Search</span>
+        <span style="color: #0a66c2;">Profiles, Posts, Jobs, Messages, Notifications, and Search</span>
       </div>
     `;
 
