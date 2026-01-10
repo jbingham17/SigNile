@@ -1,13 +1,54 @@
 // X/Twitter Content Blocker - Hide right sidebar, show only Explore and Profile in nav
+// Block home feed (For You / Following) but allow user profiles and posts
 
 (function() {
   'use strict';
+
+  // Block the home feed pages - show blank page
+  function isBlockedFeedPage() {
+    const path = window.location.pathname;
+    return path === '/home' || path === '/' || path === '/explore';
+  }
+
+  function blockFeed() {
+    if (isBlockedFeedPage()) {
+      document.documentElement.innerHTML = '<html><head><title>X</title></head><body style="background:#000"></body></html>';
+      return true;
+    }
+    return false;
+  }
+
+  // Check immediately and block if on feed page
+  if (blockFeed()) {
+    return; // Stop execution if blocked
+  }
 
   function hideElements() {
     // Hide the right sidebar column
     const sidebar = document.querySelector('[data-testid="sidebarColumn"]');
     if (sidebar) {
       sidebar.style.display = 'none';
+    }
+
+    // Hide posts/timeline on user profile pages
+    // Profile pages are /@username or /username (not system pages like /home, /explore, /i/*, /search, etc.)
+    const path = window.location.pathname;
+    const isProfilePage = path.match(/^\/[a-zA-Z0-9_]+$/) &&
+                          !['home', 'explore', 'search', 'notifications', 'messages', 'i', 'settings', 'compose'].includes(path.slice(1));
+
+    if (isProfilePage) {
+      // Hide all tweets/posts in the timeline
+      document.querySelectorAll('[data-testid="tweet"]').forEach(el => {
+        el.style.display = 'none';
+      });
+      // Hide the timeline container that holds posts
+      document.querySelectorAll('[data-testid="cellInnerDiv"]').forEach(el => {
+        el.style.display = 'none';
+      });
+      // Hide the tabs (Posts, Replies, Subs, Highlights, Media)
+      document.querySelectorAll('[role="tablist"]').forEach(el => {
+        el.style.display = 'none';
+      });
     }
 
     // Hide nav items we don't want (keep Explore and Profile)
@@ -71,4 +112,18 @@
   }
 
   startObserving();
+
+  // Also monitor for client-side navigation (X is a SPA)
+  let lastPath = window.location.pathname;
+  const navigationObserver = new MutationObserver(() => {
+    if (window.location.pathname !== lastPath) {
+      lastPath = window.location.pathname;
+      blockFeed();
+    }
+  });
+
+  navigationObserver.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
 })();
