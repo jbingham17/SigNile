@@ -73,7 +73,10 @@
       'a[data-testid="SideNav_NewTweet_Button"]',
       'a[aria-label="Lists"]',
       'a[aria-label="Bookmarks"]',
-      'a[aria-label="Premium"]'
+      'a[aria-label="Premium"]',
+      'a[aria-label="Creator Studio"]',
+      'a[href="/i/creatorstudio"]',
+      'a[href*="creator"]'
     ];
 
     navItemsToHide.forEach(selector => {
