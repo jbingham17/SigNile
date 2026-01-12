@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Site Content Blocker",
+  "name": "SigNile",
   "version": "1.2.0",
   "description": "Blocks distracting content on social media sites while keeping essential features",
   "icons": {
