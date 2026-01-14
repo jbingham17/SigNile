@@ -18,32 +18,32 @@
     return false;
   }
 
+  const hideSelectors = [
+    // Main content area - hide everything
+    'main.scaffold-layout__main',
+    '.scaffold-layout__main',
+    '.scaffold-layout__content',
+    '.scaffold-layout__row',
+    // Main feed container
+    '.scaffold-finite-scroll',
+    '.feed-shared-update-v2',
+    '.occludable-update',
+    // Feed posts
+    '[data-id^="urn:li:activity"]',
+    // News module
+    '.news-module',
+    // Feed sidebar
+    '.feed-follows-module',
+    // Core rail
+    '.core-rail',
+    // All main elements
+    'main[role="main"]',
+    'div.scaffold-layout',
+  ];
+
   // Hide feed content
   function hideContent() {
     if (!isBlockedPage()) return;
-
-    const hideSelectors = [
-      // Main content area - hide everything
-      'main.scaffold-layout__main',
-      '.scaffold-layout__main',
-      '.scaffold-layout__content',
-      '.scaffold-layout__row',
-      // Main feed container
-      '.scaffold-finite-scroll',
-      '.feed-shared-update-v2',
-      '.occludable-update',
-      // Feed posts
-      '[data-id^="urn:li:activity"]',
-      // News module
-      '.news-module',
-      // Feed sidebar
-      '.feed-follows-module',
-      // Core rail
-      '.core-rail',
-      // All main elements
-      'main[role="main"]',
-      'div.scaffold-layout',
-    ];
 
     hideSelectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
@@ -54,6 +54,19 @@
     // Also hide all elements inside main
     document.querySelectorAll('main').forEach(main => {
       main.style.setProperty('display', 'none', 'important');
+    });
+  }
+
+  // Restore content visibility when on allowed pages
+  function showContent() {
+    hideSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.removeProperty('display');
+      });
+    });
+
+    document.querySelectorAll('main').forEach(main => {
+      main.style.removeProperty('display');
     });
   }
 
@@ -112,6 +125,7 @@
       hideContent();
       showBlockedMessage();
     } else {
+      showContent();
       removeBlockedMessage();
     }
   }
