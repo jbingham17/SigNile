@@ -21,17 +21,22 @@ A Chrome extension that blocks distracting content on social media sites while k
 - Hides sidebars and community suggestions
 
 ### X (Twitter)
-- Hides Creator Studio from the sidebar
+- Hides the right sidebar (trends, who to follow)
+- Hides most navigation items (Home, Notifications, Messages, Grok, Communities, etc.)
+- Keeps only Explore and Profile accessible
 
 ### LinkedIn
 - Blocks the main feed
-- Allows access to profiles and individual posts
+- Allows access to profiles, posts, jobs, messages, notifications, and search
 
 ### Wikipedia
-- Blocks distracting content while preserving article access
+- Removes clickable internal article links (prevents wiki rabbit holes)
+- Preserves navigation, search, table of contents, and external links
+- Disambiguation pages keep links functional
 
 ### JetPunk
-- Blocks distracting content
+- Completely blocks the entire site
+- Configurable exceptions in `jetpunk.js` (one quiz currently allowed)
 
 ### smol.ai
 - Hides Discord recap sections
