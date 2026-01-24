@@ -29,7 +29,11 @@ A Chrome extension that blocks distracting content on social media sites while k
 - Blocks the main feed
 - Allows access to profiles, posts, jobs, messages, notifications, and search
 
+### TikTok
+- Completely blocks the entire site
+
 ### Wikipedia
+- Blocks the main portal and language-specific main pages
 - Removes clickable internal article links (prevents wiki rabbit holes)
 - Preserves navigation, search, table of contents, and external links
 - Disambiguation pages keep links functional
