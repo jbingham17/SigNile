@@ -113,6 +113,15 @@
       'ytd-reel-shelf-renderer',
       'ytd-rich-shelf-renderer[is-shorts]',
       'ytd-reel-item-renderer',
+      '[is-shorts]',
+      'ytd-shorts',
+      'ytd-reel-video-renderer',
+      // Shorts tab in navigation
+      'ytd-guide-entry-renderer a[title="Shorts"]',
+      'ytd-mini-guide-entry-renderer a[title="Shorts"]',
+      // Shorts links in menus
+      'a[href="/shorts"]',
+      'a[href^="/shorts/"]',
     ];
 
     shortsSelectors.forEach(selector => {
@@ -120,6 +129,101 @@
         el.style.setProperty('display', 'none', 'important');
       });
     });
+
+    // Hide Shorts navigation entry in guide
+    document.querySelectorAll('ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer').forEach(el => {
+      const link = el.querySelector('a');
+      if (link && (link.href.includes('/shorts') || link.title === 'Shorts')) {
+        el.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
+
+  // Disable Shorts scrolling (allow viewing but not scrolling to next)
+  function blockShortsScrolling() {
+    const path = window.location.pathname;
+    if (path.startsWith('/shorts')) {
+      // Remove any old blocking overlay if it exists
+      const oldOverlay = document.getElementById('signile-shorts-blocked');
+      if (oldOverlay) {
+        oldOverlay.remove();
+        document.body.style.removeProperty('overflow');
+      }
+
+      // Hide navigation buttons for next/previous shorts
+      const navSelectors = [
+        '#navigation-button-down',
+        '#navigation-button-up',
+        '.navigation-button',
+        'ytd-shorts [id*="navigation"]',
+        '.ytd-shorts #navigation-button-down',
+        '.ytd-shorts #navigation-button-up',
+      ];
+
+      navSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          el.style.setProperty('display', 'none', 'important');
+        });
+      });
+
+      // Disable scroll on Shorts containers
+      const scrollContainers = document.querySelectorAll(
+        'ytd-shorts, #shorts-container, ytd-reel-video-renderer, #shorts-inner-container, ytd-shorts-video-renderer'
+      );
+
+      scrollContainers.forEach(container => {
+        container.style.setProperty('overflow', 'hidden', 'important');
+        container.style.setProperty('overscroll-behavior', 'none', 'important');
+      });
+
+      // Block scroll/wheel events on the Shorts page
+      if (!window._signileShortsScrollBlocked) {
+        window._signileShortsScrollBlocked = true;
+
+        const blockScroll = (e) => {
+          if (window.location.pathname.startsWith('/shorts')) {
+            // Allow scrolling in comments section
+            const isInComments = e.target.closest('#comments, ytd-comments, ytd-engagement-panel-section-list-renderer');
+            if (!isInComments) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }
+        };
+
+        // Block wheel scroll
+        document.addEventListener('wheel', blockScroll, { passive: false, capture: true });
+
+        // Block touch scroll (for swipe gestures)
+        let touchStartY = 0;
+        document.addEventListener('touchstart', (e) => {
+          if (window.location.pathname.startsWith('/shorts')) {
+            touchStartY = e.touches[0].clientY;
+          }
+        }, { passive: true, capture: true });
+
+        document.addEventListener('touchmove', (e) => {
+          if (window.location.pathname.startsWith('/shorts')) {
+            const isInComments = e.target.closest('#comments, ytd-comments, ytd-engagement-panel-section-list-renderer');
+            if (!isInComments) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }
+        }, { passive: false, capture: true });
+
+        // Block keyboard navigation (up/down arrows, j/k keys)
+        document.addEventListener('keydown', (e) => {
+          if (window.location.pathname.startsWith('/shorts')) {
+            const blockedKeys = ['ArrowUp', 'ArrowDown', 'j', 'k', 'J', 'K'];
+            if (blockedKeys.includes(e.key)) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }
+        }, { capture: true });
+      }
+    }
   }
 
   // Remove left sidebar
@@ -203,6 +307,7 @@
 
   // Main blocker function
   function runBlocker() {
+    blockShortsScrolling();
     disableAutoplay();
     removeEndScreen();
     removeSidebar();

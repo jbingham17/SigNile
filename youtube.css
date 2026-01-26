@@ -229,3 +229,55 @@ ytd-rich-shelf-renderer[is-shorts],
 ytd-reel-item-renderer {
   display: none !important;
 }
+
+/* ===== SHORTS PAGE - ALLOW VIEWING BUT NO SCROLLING ===== */
+/* Hide navigation buttons to next/previous shorts */
+#navigation-button-down,
+#navigation-button-up,
+ytd-shorts #navigation-button-down,
+ytd-shorts #navigation-button-up,
+.navigation-container,
+ytd-shorts .navigation-container {
+  display: none !important;
+}
+
+/* Disable scrolling on Shorts containers */
+ytd-shorts,
+#shorts-container,
+#shorts-inner-container {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+/* Hide the shorts sequence container (shows multiple shorts) */
+.reel-video-in-sequence:not(:first-child),
+ytd-reel-video-renderer:not(:first-of-type) {
+  display: none !important;
+}
+
+/* Hide Shorts navigation entry in sidebar */
+ytd-guide-entry-renderer a[title="Shorts"],
+ytd-mini-guide-entry-renderer a[title="Shorts"],
+a[href="/shorts"],
+a[href^="/shorts/"] {
+  display: none !important;
+}
+
+/* Hide parent guide entries containing Shorts link */
+ytd-guide-entry-renderer:has(a[title="Shorts"]),
+ytd-mini-guide-entry-renderer:has(a[title="Shorts"]) {
+  display: none !important;
+}
+
+/* Hide Shorts tab in channel pages */
+yt-tab-shape[tab-title="Shorts"],
+tp-yt-paper-tab:has([href$="/shorts"]),
+[tab-title="Shorts"] {
+  display: none !important;
+}
+
+/* Hide Shorts results in search */
+ytd-video-renderer:has(a[href^="/shorts/"]),
+ytd-grid-video-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}
